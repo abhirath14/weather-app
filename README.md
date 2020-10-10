@@ -1,5 +1,5 @@
 # weather
-
+This application helps you to get the temperature and overall weather description of any city. Type the name of the city in the search box and you get the description.
 ## Project setup
 ```
 npm install

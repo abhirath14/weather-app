@@ -8,15 +8,23 @@
       <vs-button @click="getData()" class="go-button" color="primary" type="filled">Go</vs-button>
     </div>
     <br><br>
-    <h1>Temperature: {{temperature}}</h1>
+    <h2>Temperature: {{temperature}}</h2>
     <br>
-    <h1>Weather: {{weather}}</h1>
+    <h2>Weather: {{weather}}</h2>
   </div>
 </template>
 
 <script>
 import {getWeatherData} from "@/services/WeatherService";
 export default {
+  async mounted() {
+    try {
+      await this.getData();
+    } catch(err) {
+      this.temperature = "Temperature could not be fetched";
+      this.weather = "Weather could not be fetched";
+    }
+  },
   data() {
     return {
       place: 'Mumbai',
@@ -54,6 +62,9 @@ export default {
         break;
         case 'Clear':
           this.imageURL = images('./' + 'clear' + '.jpg');
+        break;
+        case 'Rain':
+          this.imageURL = images('./' + 'rain' + '.jpg');
         break;
       }
     }
